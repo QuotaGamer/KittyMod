@@ -3,7 +3,7 @@
 	"id": "kittymod",
 	"version": "${version}",
 	"name": "KittyMod",
-	"description": "Silly Hypixel SkyBlock stuff :3",
+	"description": "Silly Hypixel SkyBlock utility mod ;3",
 	"authors": [
 		"Quota (QuotableAcorn73)"
 	],
@@ -19,12 +19,6 @@
 			"me.quota73.KittyMod"
 		]
 	},
-	"mixins": [
-		{
-			"config": "kittymod.client.mixins.json",
-			"environment": "client"
-		}
-	],
 	"depends": {
 		"fabricloader": ">=0.17.3",
 		"minecraft": "~1.21.10",
