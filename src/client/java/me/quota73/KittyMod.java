@@ -60,7 +60,7 @@ public class KittyMod implements ClientModInitializer {
             "minecraft:red_stained_glass_pane", 4
     );
 
-    public static Text rainbow(String text) { // This function was created by OpenAI/ChatGPT/GPT-5.0 Instant, here be AI!
+    public static Text rainbow(String text) {
         MutableText out = Text.empty();
         int len = text.length();
         double mod = random.nextDouble(0.1, 4);
@@ -72,7 +72,6 @@ public class KittyMod implements ClientModInitializer {
             out.append(Text.literal(String.valueOf(text.charAt(i)))
                     .setStyle(Style.EMPTY.withColor(rgb)));
         }
-
         return out;
     }
 
@@ -124,8 +123,6 @@ public class KittyMod implements ClientModInitializer {
                                 && mc.currentScreen instanceof Screen screen) {
                             AtomicReference<String> title = new AtomicReference<>();
                             mc.execute(() -> title.set(screen.getTitle().getString()));
-//                            && screen.getTitle().getString() instanceof String title
-//                            && !lastScreen.get().equals(title)) {
                             if (title.get() instanceof String realTitle && !lastScreen.get().equals(realTitle)) {
                                 lastScreen.set(realTitle);
                                 safeSleep(100);
