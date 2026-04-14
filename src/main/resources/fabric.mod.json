@@ -19,6 +19,9 @@
 			"me.quota73.KittyMod"
 		]
 	},
+	"mixins": [
+		"mixins.kittymod.json"
+	],
 	"depends": {
 		"fabricloader": ">=0.17.3",
 		"minecraft": "~1.21.10",

@@ -1,0 +1,11 @@
+{
+  "required": true,
+  "package": "me.quota73.mixins",
+  "compatibilityLevel": "JAVA_21",
+  "client": [
+    "ConnectScreenMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

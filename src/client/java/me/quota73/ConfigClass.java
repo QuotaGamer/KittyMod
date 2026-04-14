@@ -15,7 +15,9 @@ public class ConfigClass {
     // not so legit
     public boolean autoClickInOrder = false;
     public boolean autoChangeAllToSameColor = false;
+    public boolean cancelInteractCooldown = false;
 
     // other
     public boolean debug = false;
+    public boolean infinithreadAliveMessage = false;
 }
