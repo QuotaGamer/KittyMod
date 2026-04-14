@@ -285,8 +285,10 @@ public class KittyMod implements ClientModInitializer {
         });
 
         ClientReceiveMessageEvents.ALLOW_GAME.register((text, ignored) -> {
+            String matchText = text.getString().toLowerCase();
             if (config.debug) logger.info(text.getString());
-            if (text.getString().toLowerCase().startsWith("puzzle fail!")) {
+            if (matchText.startsWith("puzzle fail!") && (!matchText.contains("killed a blaze in the wrong order! yikes!"))
+                    || matchText.startsWith("[statue] oruo the omniscient: yikes")) {
                 if (mc.player != null) {
                     new Thread(() -> {
                         safeSleep(250);
@@ -296,7 +298,7 @@ public class KittyMod implements ClientModInitializer {
                         safeSleep(1250);
                         mc.execute(() -> mc.inGameHud.getChatHud().addMessage(Text.literal("§eYour SkyBlock Profile§c§l has been wiped§e as you or a co-op member was determined to be boosting."
                         + "\n§eIf you believe this to be in error, you can contact our support team: §b§nsupport.hypixel.net")));
-                        safeSleep(225);
+                        safeSleep(350);
                         mc.execute(() -> mc.player.networkHandler.sendChatCommand("limbo"));
                         safeSleep(3500);
                         isBanned = true;
