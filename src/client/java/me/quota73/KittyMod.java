@@ -269,6 +269,7 @@ public class KittyMod implements ClientModInitializer {
                             .then(ClientCommandManager.literal("AutoWoof").executes(this::toggleAutoWoof))
                             .then(ClientCommandManager.literal("HideDiscordWarning").executes(this::toggleHideDiscordWarning))
                             .then(ClientCommandManager.literal("HideFireSale").executes(this::toggleHideFireSale))
+                            .then(ClientCommandManager.literal("HideWhitespace").executes(this::toggleHideWhitespace))
                             .then(ClientCommandManager.literal("Debug").executes(this::toggleDebug)
                                     .then(ClientCommandManager.literal("InfinithreadAliveMessage").executes(this::toggleThreadAliveMessage))))
                     .then(ClientCommandManager.literal("Tests")
@@ -466,6 +467,9 @@ public class KittyMod implements ClientModInitializer {
 
     private int toggleCancelInteractCooldown(CommandContext<FabricClientCommandSource> ctx) {
         return toggleFeature(config.cancelInteractCooldown, "Cancel interact cooldown", val -> config.cancelInteractCooldown = val); }
+
+    private int toggleHideWhitespace(CommandContext<FabricClientCommandSource> ctx) {
+        return toggleFeature(config.disableWhitespaceEnabled, "Hide empty lines", val -> config.disableWhitespaceEnabled = val); }
 
     private int toggleDebug(CommandContext<FabricClientCommandSource> ctx) {
         return toggleFeature(config.debug, "Debug", val -> config.debug = val); }
