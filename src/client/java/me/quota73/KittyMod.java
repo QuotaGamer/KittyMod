@@ -279,7 +279,11 @@ public class KittyMod implements ClientModInitializer {
                             .then(ClientCommandManager.literal("AutoTerms")
                                     .then(ClientCommandManager.literal("ClickInOrder").executes(this::toggleAutoClickInOrder))
                                     .then(ClientCommandManager.literal("ChangeAllToSameColor").executes(this::toggleAutoChangeAllToSameColor)))
-                            .then(ClientCommandManager.literal("CancelInteractCooldown").executes(this::toggleCancelInteractCooldown)) : null
+                            .then(ClientCommandManager.literal("CancelInteractCooldown").executes(this::toggleCancelInteractCooldown))
+                            : ClientCommandManager.literal("meow").executes((ctx) -> {
+                                mc.inGameHud.getChatHud().addMessage(Text.literal("meow"));
+                                return 1;
+                            })
                     )
             );
         });
@@ -315,13 +319,16 @@ public class KittyMod implements ClientModInitializer {
         });
 
         ClientReceiveMessageEvents.MODIFY_GAME.register((text, ignored) -> {
-            String matchText = text.getString().toLowerCase();
+            String matchText = text.getString().toLowerCase().replaceAll("§.", "");
             String whatChat;
             if (matchText.startsWith("party > ")) whatChat = "pchat";
             else if (matchText.startsWith("guild > ")) whatChat = "gchat";
             else if (matchText.startsWith("co-op > ")) whatChat = "cchat";
             else if (matchText.startsWith("officer > ")) whatChat = "ochat";
+            else if (matchText.startsWith("to > ")) whatChat = "r"; // this is technically wrong but I don't care~ :3
+            else if (matchText.startsWith("from > ")) whatChat = "r";
             else whatChat = "achat";
+            if (config.debug) logger.info("Chat detected: " + whatChat);
 
             if (text.getString().equals("Your Phoenix Pet saved you from certain death!") && config.phoenixEnabled) {
                 cooldownRemaining.set(60L);
