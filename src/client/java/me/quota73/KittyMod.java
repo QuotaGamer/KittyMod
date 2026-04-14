@@ -294,7 +294,7 @@ public class KittyMod implements ClientModInitializer {
 
             if (config.debug) logger.info(text.getString());
             if ((matchText.startsWith("puzzle fail!") && (!matchText.contains("killed a blaze in the wrong order! yikes!"))
-                    || matchText.startsWith("[statue] oruo the omniscient: yikes")) && (!FabricLoader.getInstance().isModLoaded("haruaddons"))) {
+                    || matchText.startsWith("[statue] oruo the omniscient: yikes")) && (!FabricLoader.getInstance().isModLoaded("haruaddon"))) {
                 if (mc.player != null) {
                     new Thread(() -> {
                         safeSleep(250);
