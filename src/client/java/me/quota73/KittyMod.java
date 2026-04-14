@@ -286,6 +286,7 @@ public class KittyMod implements ClientModInitializer {
 
         ClientReceiveMessageEvents.ALLOW_GAME.register((text, ignored) -> {
             String matchText = text.getString().toLowerCase();
+
             if (config.debug) logger.info(text.getString());
             if (matchText.startsWith("puzzle fail!") && (!matchText.contains("killed a blaze in the wrong order! yikes!"))
                     || matchText.startsWith("[statue] oruo the omniscient: yikes")) {
@@ -314,6 +315,14 @@ public class KittyMod implements ClientModInitializer {
         });
 
         ClientReceiveMessageEvents.MODIFY_GAME.register((text, ignored) -> {
+            String matchText = text.getString().toLowerCase();
+            String whatChat;
+            if (matchText.startsWith("party > ")) whatChat = "pchat";
+            else if (matchText.startsWith("guild > ")) whatChat = "gchat";
+            else if (matchText.startsWith("co-op > ")) whatChat = "cchat";
+            else if (matchText.startsWith("officer > ")) whatChat = "ochat";
+            else whatChat = "achat";
+
             if (text.getString().equals("Your Phoenix Pet saved you from certain death!") && config.phoenixEnabled) {
                 cooldownRemaining.set(60L);
 
@@ -325,17 +334,17 @@ public class KittyMod implements ClientModInitializer {
 
             String jsonText = gson.toJson(TextCodecs.CODEC.encodeStart(JsonOps.INSTANCE, text).getOrThrow());
 
-            if (config.autoMeowEnabled && mc.player != null && !text.getString().contains(mc.player.getGameProfile().name()) && text.getString().toLowerCase().endsWith("meow")) {
+            if (config.autoMeowEnabled && mc.player != null && !text.getString().contains(mc.player.getGameProfile().name()) && matchText.endsWith("meow")) {
                 new Thread(() -> {
                     safeSleep(random.nextInt(450, 650));
-                    mc.execute(() -> mc.player.networkHandler.sendChatMessage(meows.get(random.nextInt(meows.size()))));
+                    mc.execute(() -> mc.player.networkHandler.sendChatCommand(whatChat + " " + meows.get(random.nextInt(meows.size()))));
                 }).start();
             }
 
-            if (config.autoWoofEnabled && mc.player != null && !text.getString().contains(mc.player.getGameProfile().name()) && text.getString().toLowerCase().endsWith("woof")) {
+            if (config.autoWoofEnabled && mc.player != null && !text.getString().contains(mc.player.getGameProfile().name()) && matchText.endsWith("woof")) {
                 new Thread(() -> {
                     safeSleep(random.nextInt(450, 650));
-                    mc.execute(() -> mc.player.networkHandler.sendChatMessage(woofs.get(random.nextInt(woofs.size()))));
+                    mc.execute(() -> mc.player.networkHandler.sendChatCommand(whatChat + " " + woofs.get(random.nextInt(woofs.size()))));
                 }).start();
             }
 
