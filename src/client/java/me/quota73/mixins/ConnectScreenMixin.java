@@ -22,7 +22,7 @@ import java.time.Instant;
 @Mixin(ConnectScreen.class)
 public class ConnectScreenMixin {
 
-    @Inject(method = "connect", at = @At("HEAD"), cancellable = true)
+    @Inject(method = "connect*", at = @At("HEAD"), cancellable = true)
     private static void onConnect(Screen screen, MinecraftClient client, ServerAddress address, ServerInfo info, boolean reuseScreen, CookieStorage cookie, CallbackInfo ci) {
 
         String host = address.getAddress().split(":")[0];

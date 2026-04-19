@@ -22,6 +22,13 @@
 	"mixins": [
 		"mixins.kittymod.json"
 	],
+	"jars": [
+		{
+			"file": "yumi-mc-foundation-1.0.0-beta.2+26.1.jar"
+		}, {
+			"file": "spruceui-9.1.0+1.21.11.jar"
+		}
+	],
 	"depends": {
 		"fabricloader": ">=0.17.3",
 		"minecraft": "~1.21.10",
