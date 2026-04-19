@@ -288,7 +288,7 @@ public class KittyMod implements ClientModInitializer {
         return 1;
     }
 
-    private void saveConfig() {
+    static void saveConfig() {
         try (FileWriter writer = new FileWriter(configPath.toFile())) { gson.toJson(config, writer);
         } catch (Exception e) { System.err.println(e.getClass() + ": " + e.getMessage()); }
     }

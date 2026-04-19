@@ -51,29 +51,29 @@ public class ConfigScreen extends SpruceScreen {
 
                     list.addOptionEntry(new SpruceToggleBooleanOption("AutoMeow",
                             () -> KittyMod.config.autoMeowEnabled,
-                            bee -> KittyMod.config.autoMeowEnabled = bee,
+                            bee -> {KittyMod.config.autoMeowEnabled = bee; KittyMod.saveConfig();},
                             TooltipData.builder().text("Toggles AutoMeow, which automatically responds to any messages ending in meow that don't contain your username.").build()),
                             new SpruceToggleBooleanOption("AutoWoof",
                                     () -> KittyMod.config.autoWoofEnabled,
-                                    bee -> KittyMod.config.autoWoofEnabled = bee,
+                                    bee -> {KittyMod.config.autoWoofEnabled = bee; KittyMod.saveConfig();},
                                     TooltipData.builder().text("Toggles AutoWoof, which automatically responds to any messages ending in woof that don't contain your username.").build()));
 
                     list.addOptionEntry(new SpruceToggleBooleanOption("Phoenix pet message",
                             () -> KittyMod.config.phoenixMessageEnabled,
-                            bee -> KittyMod.config.phoenixMessageEnabled = bee,
+                            bee -> {KittyMod.config.phoenixMessageEnabled = bee; KittyMod.saveConfig();},
                             TooltipData.builder().text("Toggles the custom Phoenix pet proc message, changing it from saying it§e saved you from Certain Death§f to saying it§e saved you from Epstein's Island§f.").build()),
                             new SpruceToggleBooleanOption("Colored Chats",
                                     () -> KittyMod.config.chatColorsEnabled,
-                                    bee -> KittyMod.config.chatColorsEnabled = bee,
+                                    bee -> {KittyMod.config.chatColorsEnabled = bee; KittyMod.saveConfig();},
                                     TooltipData.builder().text("Toggles chat colors, which turns things like &6 into §6color codes§f. This works on any server.").build()));
 
                     list.addOptionEntry(new SpruceToggleBooleanOption("Rank hider",
                             () -> KittyMod.config.rankHiderEnabled,
-                            bee -> KittyMod.config.rankHiderEnabled = bee,
+                            bee -> {KittyMod.config.rankHiderEnabled = bee; KittyMod.saveConfig();},
                             TooltipData.builder().text("Hides player ranks in Hypixel's chats. This also works on Fakepixel.").build()),
                             new SpruceToggleBooleanOption("Hide Discord warning",
                                     () -> KittyMod.config.hideDiscordWarningEnabled,
-                                    bee -> KittyMod.config.hideDiscordWarningEnabled = bee,
+                                    bee -> {KittyMod.config.hideDiscordWarningEnabled = bee; KittyMod.saveConfig();},
                                     TooltipData.builder().text("Hides §cPlease be mindful of Discord links in chat as they may pose a security risk§f from the chat.").build()));
 
                     list.addOptionEntry(new SpruceToggleBooleanOption("Shorter chat types",
@@ -82,12 +82,12 @@ public class ConfigScreen extends SpruceScreen {
                             TooltipData.builder().text("Shortens Hypixel's chat types, for example: '§9Party§8 > §f' would become '§7[§9PC§7] '§r. This also works on Fakepixel.").build()),
                             new SpruceToggleBooleanOption("Disable empty lines",
                                     () -> KittyMod.config.disableWhitespaceEnabled,
-                                    bee -> KittyMod.config.disableWhitespaceEnabled = bee,
+                                    bee -> {KittyMod.config.disableWhitespaceEnabled = bee; KittyMod.saveConfig();},
                                     TooltipData.builder().text("Hides empty lines and excess whitespace from the chat. This works on any server, and may also function as a chat clear bypass.").build()));
 
                     list.addOptionEntry(new SpruceToggleBooleanOption("Hide Fire Sales",
                             () -> KittyMod.config.hideFireSaleEnabled,
-                            bee -> KittyMod.config.hideFireSaleEnabled = bee,
+                            bee -> {KittyMod.config.hideFireSaleEnabled = bee; KittyMod.saveConfig();},
                             TooltipData.builder().text("Hides Hypixel's §c§l§kA §c§lFIRE SALE §kA§f message from the chat.").build()), null);
 
                     return list;
@@ -99,11 +99,11 @@ public class ConfigScreen extends SpruceScreen {
 
                     list.addOptionEntry(new SpruceToggleBooleanOption("Phoenix pet cooldown bar",
                             () -> KittyMod.config.phoenixBarEnabled,
-                            bee -> KittyMod.config.phoenixBarEnabled = bee,
+                            bee -> {KittyMod.config.phoenixBarEnabled = bee; KittyMod.saveConfig();},
                             TooltipData.builder().text("Adds a bar at the top of your screen to show the Phoenix pet's Rekindle ability cooldown.").build()),
                             new SpruceToggleBooleanOption("Glassorite",
                                     () -> KittyMod.config.Glassorite,
-                                    bee -> KittyMod.config.Glassorite = bee,
+                                    bee -> {KittyMod.config.Glassorite = bee; KittyMod.saveConfig();},
                                     TooltipData.builder().text("Turns Diorite and Polished Diorite at the Storm phase of F7/M7 into Glass (client-side). This§o should§r work on any server, though it's locked to specific coordinates.").build()));
 
                     return list;
@@ -115,7 +115,7 @@ public class ConfigScreen extends SpruceScreen {
 
             list.addOptionEntry(new SpruceToggleBooleanOption("Chat debugging",
                     () -> KittyMod.config.debug,
-                    bee -> KittyMod.config.debug = bee,
+                    bee -> {KittyMod.config.debug = bee; KittyMod.saveConfig();},
                     TooltipData.builder().text("Toggles the chat-related debug logging.").build()), null);
 
             return list;
